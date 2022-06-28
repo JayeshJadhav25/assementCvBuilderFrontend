@@ -1,0 +1,42 @@
+import React, { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import DefaultLayout from "../../components/DefaultLayout";
+import Layout1 from "./Layout1";
+import Layout2 from "./Layout2";
+import { Button } from "antd";
+function LayoutPage() {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  const params = useParams();
+  const navigate = useNavigate()
+  const gettemplate = () => {
+    // return <Template1 />;
+    // if(params.name === 'Highlighted Sections Resume') {
+    //     return <Template2 />;
+    // } else {
+    //     return <Template1 />;
+    // }
+    switch (params.id) {
+      case "1": {
+        return <Layout1 />;
+      }
+      case "2": {
+        return <Layout2 />;
+      }
+    }
+  };
+  return (
+    <DefaultLayout>
+      <div className="d-flex justify-content-end my-5 mx-5">
+        <Button className="back-btn" onClick={()=>navigate('/home')}>Back</Button>
+        <Button className="mx-5" onClick={handlePrint}>Print</Button>
+      </div>
+      <div ref={componentRef}>{gettemplate()}</div>
+    </DefaultLayout>
+  );
+}
+
+export default LayoutPage;
