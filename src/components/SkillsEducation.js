@@ -16,9 +16,7 @@ const  SkillsEducation = () => {
   const { degree ,percentage,institution} = formData;
 
   const onChange = e => setFormData({...formData,[e.target.name]:e.target.value})
-  // const onChange = (e) => {
-  //   console.log('e.target',e.target.name);
-  // }
+  
 
   const addEducation = (e) => {
     e.preventDefault();

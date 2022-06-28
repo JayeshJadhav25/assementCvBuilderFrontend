@@ -4,12 +4,10 @@ import './login.css';
 import axios from 'axios';
 import { message } from "antd";
 
-// import { useHistory } from 'react-router-dom';
 const { REACT_APP_PUBLIC_URL } = process.env;
 
 
 const LoginPage=()=> { 
-    // let history = useHistory();
 
     const [formData,setFormData] = useState({
         username:'',
@@ -42,10 +40,7 @@ const LoginPage=()=> {
             //storing token to local storage
             // alert('login succes')
             localStorage.setItem('token',res.data.token)  
-            navigate('/home')
-
-            // history.push('/dashboard')
-            
+            navigate('/home')            
         } catch(err) {
             console.log('errr',err)
             // if(err.response.status === 400) {
@@ -58,7 +53,6 @@ const LoginPage=()=> {
            
         }
 
-// // localStorage.getItem('userId')
 }
     
     return (

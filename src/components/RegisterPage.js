@@ -19,11 +19,22 @@ const RegisterPage=()=> {
     const { email,password,username,contactNumber,confirmPassword } = formData;
     // let history = useHistory();
 
-    const onChange = e => setFormData({...formData,[e.target.name]:e.target.value})
-    // const onChange = (e) => {
-    //     console.log()
-    //     setFormData({...formData,[e.target.name]:e.target.value})
-    // }
+    // const onChange = e => setFormData({...formData,[e.target.name]:e.target.value})
+    const onChange = (e) => {
+        // console.log(e.target.name,e.target.value)
+        const re = /^[0-9\b]+$/;
+    
+        if (
+          e.target.name == 'contactNumber' &&
+          (!re.test(e.target.value) || e.target.value.length == 11)
+        ) {
+          if (e.target.value != '') {
+            return;
+          }
+        }
+
+        setFormData({...formData,[e.target.name]:e.target.value})
+    }
     const onsubmit=async (e) => {
         
             e.preventDefault();
